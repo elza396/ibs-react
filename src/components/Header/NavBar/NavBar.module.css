@@ -1,0 +1,17 @@
+.cart {
+    margin-right: 16px;
+}
+.cart,
+.profile {
+    fill: var(--default-color);
+    cursor: pointer;
+    transition: var(--default-transition);
+}
+.cart:hover,
+.profile:hover {
+    fill: var(--accent-color);
+}
+.cart:active,
+.profile:active {
+    fill: #4f2c00;
+}

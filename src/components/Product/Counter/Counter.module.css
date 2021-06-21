@@ -1,0 +1,58 @@
+.counter {
+    display: flex;
+    justify-content: space-between;
+    width: 180px;
+    border: 1px solid var(--default-color);
+    align-items: center;
+    box-sizing: border-box;
+}
+.button {
+    border: none;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: transparent;
+    transition: var(--default-transition);
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #ececec;
+}
+.button:active {
+    background-color: #cdcdcd;
+}
+.button.remove {
+    border-right: 1px solid var(--default-color);
+}
+.button.add {
+    border-left: 1px solid var(--default-color);
+}
+.remove::before,
+.add::before,
+.add::after {
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    content: '';
+    background-color: var(--accent-color);
+}
+.remove::before {
+    width: 14px;
+    height: 2px;
+}
+.add::before {
+    width: 14px;
+    height: 2px;
+}
+.add::after {
+    width: 2px;
+    height: 14px;
+}
+.number {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}

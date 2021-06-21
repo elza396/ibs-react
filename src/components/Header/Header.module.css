@@ -1,0 +1,14 @@
+.header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.leftBlock {
+    display: flex;
+}
+.button {
+    margin-right: 30px;
+    color: #8c8c8c;
+    width: 50px;
+}
