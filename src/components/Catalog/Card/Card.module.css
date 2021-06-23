@@ -27,6 +27,9 @@
     height: 140px;
     object-fit: none;
 }
+.card .title {
+    text-decoration: none;
+}
 .title {
     height: 40px;
     width: 90%;
