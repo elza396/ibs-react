@@ -1,18 +1,21 @@
 import React from 'react';
 import styles from './SearchForm.module.css';
+import {useDispatch} from "react-redux";
+import {productsSlice} from "../../../store/products/reducer";
 
-interface ISearchFormProps {
-    onInput: (searchData: string) => void;
-}
+export const SearchForm = (): JSX.Element => {
+    const dispatch = useDispatch();
 
-export const SearchForm = (props: ISearchFormProps): JSX.Element => {
-    const {onInput} = props;
+    const handleInputSearchForm = (data: string) => {
+        const searchData = data.toLowerCase();
+        dispatch(productsSlice.actions.setProductFilter(searchData));
+    }
 
     return(
         <div className={styles.form}>
             <input type="text" onChange={(e) => {
                 setTimeout(() => {
-                    return onInput(e.target.value);
+                    return handleInputSearchForm(e.target.value);
                 }, 1000);
             }} className={styles.input} placeholder="Search products"/>
             <svg className={styles.icon} width="24" height="24" viewBox="0 0 24 24" fill="none"

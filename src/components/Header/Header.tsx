@@ -7,12 +7,11 @@ import {Link} from "react-router-dom";
 import {NAV_ITEMS} from "../../constants/navigation";
 
 interface IHeaderProps {
-    onInput: (searchData: string) => void;
     isProductPageOpen: boolean;
 }
 
 export const Header = (props: IHeaderProps): JSX.Element => {
-    const {onInput, isProductPageOpen} = props;
+    const {isProductPageOpen} = props;
 
     return(
         <header className={s.header}>
@@ -22,7 +21,7 @@ export const Header = (props: IHeaderProps): JSX.Element => {
                     <Button className={s.button}>&#60;</Button>
                 </Link>
                 }
-                {isProductPageOpen || <SearchForm onInput={onInput}/>}
+                {isProductPageOpen || <SearchForm />}
             </div>
             <NavBar />
         </header>

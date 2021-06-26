@@ -3,13 +3,15 @@ import {IProduct} from "../../models/IProduct";
 import {IProductDiscription} from "../../models/IProductDiscription";
 
 interface IProductsState {
-    products: IProduct[];
+    all: IProduct[];
     currentProduct: IProductDiscription | null;
+    productFilter: string;
 }
 
 const initialState: IProductsState = {
-    products: [],
+    all: [],
     currentProduct: null,
+    productFilter: '',
 }
 
 export const productsSlice = createSlice({
@@ -17,10 +19,13 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         setProducts: (state, action: PayloadAction<IProduct[]>) => {
-            state.products = action.payload;
+            state.all = action.payload;
         },
         setCurrentProduct: (state, action: PayloadAction<IProductDiscription | null>) => {
             state.currentProduct = action.payload;
+        },
+        setProductFilter: (state, action: PayloadAction<string>) => {
+            state.productFilter = action.payload;
         }
     },
 })
