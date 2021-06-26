@@ -1,9 +1,10 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import s from './Catalog.module.css';
 import {Card} from "./Card/Card";
-import axios from "axios";
-import {API_URL} from "../../constants/API";
 import {IProduct} from "../../models/IProduct";
+import {useDispatch, useSelector} from "react-redux";
+import {loadProducts} from "../../store/products/actions";
+import {productsSelector} from "../../store/products/selectors";
 
 interface ICatalogProps {
     searchData: string;
@@ -11,22 +12,12 @@ interface ICatalogProps {
 
 export const Catalog = (props: ICatalogProps) => {
     const {searchData} = props;
-
-    const [products, setProducts] = useState<IProduct[]>([]);
-
-    const loadItems = useCallback(
-        async () => {
-            try {
-                const response = await axios.get(`${API_URL}item`);
-                setProducts(response.data.content as IProduct[]);
-            } catch (error) {
-                console.error(error);
-            }
-        }, []);
+    const dispatch = useDispatch();
+    const products = useSelector(productsSelector);
 
     useEffect(() => {
-        void loadItems();
-    }, [loadItems])
+        dispatch(loadProducts());
+    }, [dispatch])
 
     const selectedProducts: IProduct[] = products
         .filter(item => item.name.toLowerCase().includes(searchData));

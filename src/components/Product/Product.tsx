@@ -1,35 +1,28 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import s from './Product.module.css';
-import axios from "axios";
 import {Counter} from "./Counter/Counter";
 import {Button} from "../Button/Button";
 import {FavoriteIcon} from "../FavoriteIcon/FavoriteIcon";
 import {API_URL} from "../../constants/API";
 import {CURRENCY} from "../../constants/currency";
-import {IProductDiscription} from "../../models/IProductDiscription";
 import {useParams} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {loadProductById} from "../../store/products/actions";
+import {productsSlice} from "../../store/products/reducer";
+import {currentProductSelector} from "../../store/products/selectors";
 
 export const Product = () => {
 
     const {productId} = useParams<{productId: string}>();
-
-    const [product, setProduct] = useState<IProductDiscription | null>(null);
-
-    const loadItem = useCallback(
-        async () => {
-            try {
-                const response = await axios.get(`${API_URL}item/${productId}`);
-                setProduct(response.data.content);
-            } catch (error) {
-                console.error(error);
-            }
-        }, [productId]
-    )
+    const dispatch = useDispatch();
+    const product = useSelector(currentProductSelector);
 
     useEffect(() => {
-        void loadItem();
-    }, [loadItem])
-
+        dispatch(loadProductById(productId));
+        return () => {
+            dispatch(productsSlice.actions.setCurrentProduct(null));
+        };
+    }, [productId, dispatch])
 
     if(!product) {
         return <p>Loading...</p>;
