@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './Counter.module.css';
+import s from './Counter.module.css';
 
 export const Counter = () => {
     return(
-        <div className={styles.counter}>
-            <button className={`${styles.button} ${styles.remove}`}/>
-            <p className={styles.number}>1</p>
-            <button className={`${styles.button} ${styles.add}`}/>
+        <div className={s.counter}>
+            <button className={`${s.button} ${s.remove}`}/>
+            <p className={s.number}>1</p>
+            <button className={`${s.button} ${s.add}`}/>
         </div>
     )
 }

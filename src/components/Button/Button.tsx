@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.module.css';
+import s from './Button.module.css';
 
 interface IButtonProps {
     className: string;
@@ -10,6 +10,6 @@ export const Button = (props: IButtonProps): JSX.Element => {
     const {className, children} = props;
 
     return(
-        <button className={`${styles.button} ${className}`}>{children}</button>
+        <button className={`${s.button} ${className}`}>{children}</button>
     )
 }

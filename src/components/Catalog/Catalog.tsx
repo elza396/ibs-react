@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import styles from './Catalog.module.css';
+import React, {useState, useEffect, useCallback} from 'react';
+import s from './Catalog.module.css';
 import {Card} from "./Card/Card";
 import axios from "axios";
 import {API_URL} from "../../constants/API";
@@ -14,24 +14,26 @@ export const Catalog = (props: ICatalogProps) => {
 
     const [products, setProducts] = useState<IProduct[]>([]);
 
-    useEffect(() => {
-        const loadItems = async () => {
+    const loadItems = useCallback(
+        async () => {
             try {
                 const response = await axios.get(`${API_URL}item`);
                 setProducts(response.data.content as IProduct[]);
             } catch (error) {
                 console.error(error);
             }
-        }
+        }, []
+    );
 
+    useEffect(() => {
         void loadItems();
-    }, [])
+    }, [loadItems])
 
     const selectedProducts: IProduct[] = products
         .filter(item => item.name.toLowerCase().includes(searchData));
 
     return(
-        <div className={styles.catalog}>
+        <div className={s.catalog}>
             {selectedProducts.map(product=> {
                 return <Card key={product.id} product={product}/>
             })}

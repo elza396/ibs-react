@@ -33,3 +33,8 @@
 .input:focus + .icon {
     fill: var(--accent-color);
 }
+@media only screen and (max-width: 740px) {
+    .form {
+        width: 200px;
+    }
+}

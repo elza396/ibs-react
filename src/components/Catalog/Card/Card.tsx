@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Card.module.css';
+import s from './Card.module.css';
 import {FavoriteIcon} from "../../FavoriteIcon/FavoriteIcon";
 import {API_URL} from "../../../constants/API";
 import {CURRENCY} from "../../../constants/currency";
@@ -13,13 +13,13 @@ interface ICardProps {
 }
 
 export const Card = (props: ICardProps): JSX.Element  => {
-    const product: IProduct = props.product;
+    const {product} = props;
     return(
-        <Link to={`${NAV_ITEMS}/${product.id}`} className={styles.card}>
-            <FavoriteIcon classes={styles.icon} isLiked={product.like} />
-            <img className={styles.image} src={API_URL + product.picture.path} alt={product.picture.alt}/>
-            <p className={styles.title}>{product.name}</p>
-            <p className={styles.price}>{CURRENCY[product.price.currency] + product.price.value}</p>
+        <Link to={`${NAV_ITEMS.path}/${product.id}`} className={s.card}>
+            <FavoriteIcon classes={s.icon} isLiked={product.like} />
+            <img className={s.image} src={API_URL + product.picture.path} alt={product.picture.alt}/>
+            <p className={s.title}>{product.name}</p>
+            <p className={s.price}>{CURRENCY[product.price.currency] + product.price.value}</p>
         </Link>
     )
 }

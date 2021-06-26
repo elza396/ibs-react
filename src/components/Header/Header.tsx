@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Header.module.css';
+import s from './Header.module.css';
 import {SearchForm} from "./SearchForm/SearchForm";
 import {NavBar} from "./NavBar/NavBar";
 import {Button} from "../Button/Button";
@@ -15,11 +15,11 @@ export const Header = (props: IHeaderProps): JSX.Element => {
     const {onInput, isProductPageOpen} = props;
 
     return(
-        <header className={styles.header}>
-            <div className={styles.leftBlock}>
+        <header className={s.header}>
+            <div className={s.leftBlock}>
                 {props.isProductPageOpen &&
-                <Link to={NAV_ITEMS}>
-                    <Button className={styles.button}>&#60;</Button>
+                <Link to={NAV_ITEMS.path}>
+                    <Button className={s.button}>&#60;</Button>
                 </Link>
                 }
                 {isProductPageOpen || <SearchForm onInput={onInput}/>}

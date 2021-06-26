@@ -57,3 +57,40 @@
     background-color: #c87a21;
 }
 
+@media only screen and (max-width: 740px) {
+    .product {
+        flex-direction: column;
+    }
+    .image {
+        background: linear-gradient(360deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 50%);
+        background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.15)), color-stop(50%, rgba(0, 0, 0, 0)));
+        background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 50%);
+        border: none;
+        height: 200px;
+        width: calc(100% + 48px);
+        transform: translateX(-24px);
+    }
+    .image img {
+        height: 90%;
+    }
+    .title {
+        margin-top: 16px;
+    }
+    .text {
+        margin-bottom: 16px;
+    }
+    .details {
+        margin: 72px 0 24px;
+        position: relative;
+        justify-content: space-between;
+    }
+    .price {
+        position: absolute;
+        top: -56px;
+        left: 0;
+    }
+    .button {
+        margin: 0;
+    }
+}
+

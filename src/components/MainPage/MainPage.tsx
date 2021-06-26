@@ -6,9 +6,12 @@ import {NAV_ITEMS} from "../../constants/navigation";
 export const MainPage = (): JSX.Element => {
 
     return(
-        <Link to={NAV_ITEMS}>
-            <p>Catalog</p>
-        </Link>
+        <>
+            <p>Some information about this awesome shop.</p>
+            <Link to={NAV_ITEMS.path}>
+                <p>Catalog</p>
+            </Link>
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from './App.module.css';
+import s from './App.module.css';
 import {Header} from "./components/Header/Header";
 import {Catalog} from "./components/Catalog/Catalog";
 import {Product} from "./components/Product/Product";
@@ -11,7 +11,7 @@ import {NAV_ITEMS, NAV_ROOT} from "./constants/navigation";
 export const App = (): JSX.Element =>  {
     const [searchData, setSearchData] = useState<string>('');
 
-    const match = useRouteMatch(`${NAV_ITEMS}/:productId`);
+    const match = useRouteMatch(`${NAV_ITEMS.path}/:productId`);
 
     const handleInputSearchForm = (data: string) => {
         const searchData = data.toLowerCase();
@@ -19,16 +19,16 @@ export const App = (): JSX.Element =>  {
     }
 
     return(
-        <div className={styles.content}>
+        <div className={s.content}>
             <Header onInput={handleInputSearchForm} isProductPageOpen={Boolean(match)} />
             <Switch>
-                <Route exact path={NAV_ROOT}>
+                <Route exact path={NAV_ROOT.path}>
                     <MainPage />
                 </Route>
-                <Route exact path={NAV_ITEMS}>
+                <Route exact path={NAV_ITEMS.path}>
                     <Catalog searchData={searchData} />
                 </Route>
-                <Route exact path={`${NAV_ITEMS}/:productId`}>
+                <Route exact path={`${NAV_ITEMS.path}/:productId`}>
                     <Product />
                 </Route>
             </Switch>
