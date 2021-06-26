@@ -14,6 +14,7 @@ interface ICardProps {
 
 export const Card = (props: ICardProps): JSX.Element  => {
     const {product} = props;
+
     return(
         <Link to={`${NAV_ITEMS.path}/${product.id}`} className={s.card}>
             <FavoriteIcon classes={s.icon} isLiked={product.like} />

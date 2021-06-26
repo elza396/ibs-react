@@ -22,8 +22,7 @@ export const Catalog = (props: ICatalogProps) => {
             } catch (error) {
                 console.error(error);
             }
-        }, []
-    );
+        }, []);
 
     useEffect(() => {
         void loadItems();
