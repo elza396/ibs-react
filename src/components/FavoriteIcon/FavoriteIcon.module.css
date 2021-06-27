@@ -1,0 +1,19 @@
+.icon:hover {
+    opacity: 0.5;
+}
+.icon {
+    cursor: pointer;
+    transition: var(--default-transition);
+}
+.stroke {
+    opacity: 1;
+}
+.fill {
+    opacity: 0;
+}
+.isLiked .stroke {
+    opacity: 0;
+}
+.isLiked .fill {
+    opacity: 1;
+}
