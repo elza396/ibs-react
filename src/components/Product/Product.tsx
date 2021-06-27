@@ -10,12 +10,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {loadProductById} from "../../store/products/actions";
 import {productsSlice} from "../../store/products/reducer";
 import {currentProductSelector} from "../../store/products/selectors";
+import {isLoadingSelector} from "../../store/requests/selectors";
 
 export const Product = () => {
 
     const {productId} = useParams<{productId: string}>();
     const dispatch = useDispatch();
     const product = useSelector(currentProductSelector);
+    const isLoading = useSelector(isLoadingSelector);
 
     useEffect(() => {
         dispatch(loadProductById(productId));
@@ -24,14 +26,14 @@ export const Product = () => {
         };
     }, [productId, dispatch])
 
-    if(!product) {
+    if (isLoading) {
         return <p>Loading...</p>;
     }
-
-    return(
-        <div className={`${s.product} ${product.like ? s.liked : ''}`}>
+    
+    return (
+        product && (<div className={`${s.product} ${product.like ? s.liked : ''}`}>
             <div className={s.image}>
-                <img src={API_URL + product.picture.path} alt={product.picture.alt} />
+                <img src={API_URL + product.picture.path} alt={product.picture.alt}/>
             </div>
             <div>
                 <p className={s.title}>{product.name}</p>
@@ -40,12 +42,11 @@ export const Product = () => {
                 <p className={s.text}>{product.details}</p>
                 <div className={s.details}>
                     <p className={s.price}>{CURRENCY[product.price.currency]}{product.price.value}</p>
-                    <Counter />
+                    <Counter/>
                     <Button className={s.button}>Add to cart</Button>
-                    <FavoriteIcon isLiked={product.like} />
+                    <FavoriteIcon isLiked={product.like}/>
                 </div>
             </div>
-        </div>
+        </div>)
     )
-
 }

@@ -12,6 +12,7 @@ const initialState: IProductsState = {
     all: [],
     currentProduct: null,
     productFilter: '',
+
 }
 
 export const productsSlice = createSlice({
